@@ -1,0 +1,23 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index
+GET     /index.html                 controllers.Application.index
+GET     /status/ping                controllers.Application.ping
+
+# Provisional For iTunes
+
+# Next paths is generated.
+##replace[paths]
+POST    /api/battle/create_room     controllers.api.BattleController.postCreateRoom
+POST    /api/battle/join_room       controllers.api.BattleController.postJoinRoom
+POST    /api/battle/accept_room     controllers.api.BattleController.postAcceptRoom
+POST    /api/battle/leave_room      controllers.api.BattleController.postLeaveRoom
+POST    /api/battle/receive_api_events controllers.api.BattleController.postReceiveApiEvents
+POST    /api/battle/send/operation  controllers.api.BattleController.postSendOperation
+##end
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
