@@ -11,7 +11,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 object Client{
   var baseUrl = "http://localhost:9000"
-  var clientVersion = "3.0.0"
+  var clientVersion = "3.0.2"
 
   implicit val formats = JsonHelper.infoTypeFormats
 
