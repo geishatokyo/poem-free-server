@@ -5,7 +5,7 @@ val projectVersion = "3.0.0"
 val projectScalaVersion = "2.11.7"
 val _organization = "com.geishatokyo." + projectName
 val appPort = "9000"
-val dependPlay = "com.typesafe.play" %% "play-server" % "2.4.6"
+val dependPlay = "com.typesafe.play" %% "play-server" % play.core.PlayVersion.current
 
 val forLibrary = Seq(
   dependPlay,
@@ -25,6 +25,11 @@ val forTestHttpClient = Seq(
 def runChildPlayServer = Command.command("run")( state => {
   val subState = Command.process(s"project server",state)
   Command.process(s"run ${appPort}",subState)
+  state
+})
+def startChildPlayServer = Command.command("start")( state => {
+  val subState = Command.process(s"project server",state)
+  Command.process(s"start ${appPort}",subState)
   state
 })
 
@@ -51,6 +56,7 @@ lazy val apollon = (project in file("."))
     description := "parent project for " + projectName,
     commands ++= Seq(
       runChildPlayServer,
+      startChildPlayServer,
       assemblyServer,
       runHttpClient),
     scalacOptions += """-Dfile.encoding=utf8"""
